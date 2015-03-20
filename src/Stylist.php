@@ -4,7 +4,7 @@
       private $name;
       private $id;
 
-      function __construct($name, $id = null)
+      function __construct($name, $id)
       {
         $this->name = $name;
         $this->id = $id;
@@ -52,7 +52,7 @@
       {
         $clients = array();
         $returned_clients = $GLOBALS['DB']->query("SELECT * FROM client WHERE stylist_id = {$this->getId()};");
-        foreach($returned_cients as $client) {
+        foreach($returned_clients as $client) {
           $name = $client['name'];
           $phone = $client['phone'];
           $email = $client['email'];
@@ -78,7 +78,7 @@
         return $stylists;
       }
 
-      static function find($serach_id)
+      static function find($search_id)
       {
         $found_stylist = null;
         $stylists = Stylist::getAll();
