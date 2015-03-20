@@ -40,6 +40,30 @@
         $this->setId($result['id']);
       }
 
+      //update function
+      function update($new_name)
+      {
+        $GLOBALS['DB']->exec("UPDATE stylist SET name = '{$new_name}' WHERE id = {$this->getId()};");
+        $this->setName($new_name);
+      }
+
+      //connect to Client class
+      function getClients()
+      {
+        $clients = array();
+        $returned_clients = $GLOBALS['DB']->query("SELECT * FROM client WHERE stylist_id = {$this->getId()};");
+        foreach($returned_cients as $client) {
+          $name = $client['name'];
+          $phone = $client['phone'];
+          $email = $client['email'];
+          $id = $client['id'];
+          $stylist_id = $client['stylist_id'];
+          $new_client = new Client($name, $phone, $email, $id, $stylist_id);
+          array_push($clients, $new_client);
+        }
+        return $clients;
+      }
+
       //static functions
       static function getAll()
       {
@@ -54,22 +78,28 @@
         return $stylists;
       }
 
-      // static function find($serach_id)
-      // {
-      //   $found_stylist = null;
-      //   $stylists = Stylist::getAll();
-      //   foreach($stylists as $stylist) {
-      //     $stylist_id = $stylist->getId();
-      //     if ($stylist_id == $search_id) {
-      //       $found_styist = $stylist;
-      //     }
-      //   }
-      //   return $found_stylist;
-      // }
+      static function find($serach_id)
+      {
+        $found_stylist = null;
+        $stylists = Stylist::getAll();
+        foreach($stylists as $stylist) {
+          $stylist_id = $stylist->getId();
+          if ($stylist_id == $search_id) {
+            $found_styist = $stylist;
+          }
+        }
+        return $found_stylist;
+      }
 
       static function deleteAll()
       {
         $GLOBALS['DB']->exec("DELETE FROM stylist *;");
+      }
+
+      static function delete()
+      {
+        $GLOBALS['DB']->exec("DELETE FROM stylist WHERE id = {$this->getId()};");
+        $GLOBALS['DB']->exec("DELETE FROM client WHERE stylist_id = {$this->getId()};");
       }
 
     }

@@ -115,6 +115,33 @@
         $this->assertEquals([], $result);
       }
 
+      function test_getClients()
+      {
+        //Arrange
+        $name = "Stylist Jane";
+        $id = null
+        $test_stylist = new Stylist($name, $id);
+        $test_stylist->save();
+
+        $name = "Ken Kesey";
+        $phone = "8473453801";
+        $email = "sometimes@greatnotion.com";
+        $test_client = new Client($name, $phone, $email, $id);
+        $test_client->save();
+
+        $name2 = "Cormac McCarthy";
+        $phone2 = "6667778899";
+        $email2 = "thekid@bloodmeridian.com";
+        $test_client2 = new Client($name2, $phone2, $email2, $id);
+        $test_client2->save();
+
+        //Act
+        $result = $test_stylist->getClients();
+
+        //Assert
+        $this->assertEquals([$test_client, $test_client2], $result);
+      }
+
       // function test_find()
       // {
       //   //Assert
