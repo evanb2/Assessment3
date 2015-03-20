@@ -115,6 +115,25 @@
         $this->assertEquals([], $result);
       }
 
+      // function test_find()
+      // {
+      //   //Assert
+      //   $name = "Stylist Jane";
+      //   $id = null;
+      //   $name2 = "Stylist Bob";
+      //   $id2 = null;
+      //   $test_stylist = new Stylist($name, $id);
+      //   $test_stylist->save();
+      //   $test_stylist2 = new Stylist($name2, $id2);
+      //   $test_stylist2->save();
+      //
+      //   //Act
+      //   $result = Stylist::find($test_stylist->getId());
+      //
+      //   //Assert
+      //   $this->assertEquals($test_stylist, $result);
+      // }
+
 
 
     }

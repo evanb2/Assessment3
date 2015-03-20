@@ -54,6 +54,19 @@
         return $stylists;
       }
 
+      // static function find($serach_id)
+      // {
+      //   $found_stylist = null;
+      //   $stylists = Stylist::getAll();
+      //   foreach($stylists as $stylist) {
+      //     $stylist_id = $stylist->getId();
+      //     if ($stylist_id == $search_id) {
+      //       $found_styist = $stylist;
+      //     }
+      //   }
+      //   return $found_stylist;
+      // }
+
       static function deleteAll()
       {
         $GLOBALS['DB']->exec("DELETE FROM stylist *;");
