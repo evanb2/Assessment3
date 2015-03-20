@@ -22,7 +22,7 @@
       {
         //Arrange
         $name = "Stylist Jane";
-        $id = null;
+        $id = 1;
         $test_stylist = new Stylist($name, $id);
 
         //Act
@@ -50,7 +50,7 @@
       {
         //Arrange
         $name = "Stylist Jane";
-        $id = null;
+        $id = 2;
         $test_stylist = new Stylist($name, $id);
 
         //Act
@@ -65,7 +65,7 @@
       {
         //Arrange
         $name = "Stylist Jane";
-        $id = null;
+        $id = 1;
         $test_stylist = new Stylist($name, $id);
         $test_stylist->save();
 
@@ -80,9 +80,9 @@
       {
         //Arrange
         $name = "Stylist Jane";
-        $id = null;
+        $id = 1;
         $name2 = "Stylist Bob";
-        $id2 = null;
+        $id2 = 2;
         $test_stylist = new Stylist($name, $id);
         $test_stylist->save();
         $test_stylist2 = new Stylist($name2, $id2);
@@ -99,9 +99,9 @@
       {
         //Arrange
         $name = "Stylist Jane";
-        $id = null;
+        $id = 1;
         $name2 = "Stylist Bob";
-        $id2 = null;
+        $id2 = 2;
         $test_stylist = new Stylist($name, $id);
         $test_stylist->save();
         $test_stylist2 = new Stylist($name2, $id2);
@@ -119,7 +119,7 @@
       {
         //Arrange
         $name = "Stylist Jane";
-        $id = null;
+        $id = 1;
         $test_stylist = new Stylist($name, $id);
         $test_stylist->save();
 
@@ -148,9 +148,9 @@
       {
         //Assert
         $name = "Stylist Jane";
-        $id = 1;
+        $id = 4;
         $name2 = "Stylist Bob";
-        $id2 = 2;
+        $id2 = 6;
         $test_stylist = new Stylist($name, $id);
         $test_stylist->save();
         $test_stylist2 = new Stylist($name2, $id2);

@@ -4,7 +4,7 @@
       private $name;
       private $id;
 
-      function __construct($name, $id = null)
+      function __construct($name, $id = 1)
       {
         $this->name = $name;
         $this->id = $id;
@@ -32,26 +32,11 @@
         return $this->id;
       }
 
-      //save function
-      function save()
-      {
-        $statement = $GLOBALS['DB']->query("INSERT INTO stylist (name) VALUES ('{$this->getName()}') RETURNING id;");
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-        $this->setId($result['id']);
-      }
-
-      //update function
-      function update($new_name)
-      {
-        $GLOBALS['DB']->exec("UPDATE stylist SET name = '{$new_name}' WHERE id = {$this->getId()};");
-        $this->setName($new_name);
-      }
-
       //connect to Client class
       function getClients()
       {
         $clients = array();
-        $returned_clients = $GLOBALS['DB']->query("SELECT * FROM client WHERE stylist_id = {$this->getId()};");
+        $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients WHERE stylist_id = {$this->getId()};");
         foreach($returned_clients as $client) {
           $name = $client['name'];
           $phone = $client['phone'];
@@ -64,10 +49,25 @@
         return $clients;
       }
 
+      //save function
+      function save()
+      {
+        $statement = $GLOBALS['DB']->query("INSERT INTO stylists (name) VALUES ('{$this->getName()}') RETURNING id;");
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        $this->setId($result['id']);
+      }
+
+      //update function
+      function update($new_name)
+      {
+        $GLOBALS['DB']->exec("UPDATE stylists SET name = '{$new_name}' WHERE id = {$this->getId()};");
+        $this->setName($new_name);
+      }
+
       //static functions
       static function getAll()
       {
-        $returned_stylists = $GLOBALS['DB']->query("SELECT * FROM stylist;");
+        $returned_stylists = $GLOBALS['DB']->query("SELECT * FROM stylists;");
         $stylists = array();
         foreach($returned_stylists as $stylist) {
           $name = $stylist['name'];
@@ -93,13 +93,13 @@
 
       static function deleteAll()
       {
-        $GLOBALS['DB']->exec("DELETE FROM stylist *;");
+        $GLOBALS['DB']->exec("DELETE FROM stylists *;");
       }
 
-      static function delete()
+      function delete()
       {
-        $GLOBALS['DB']->exec("DELETE FROM stylist WHERE id = {$this->getId()};");
-        $GLOBALS['DB']->exec("DELETE FROM client WHERE stylist_id = {$this->getId()};");
+        $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
+        $GLOBALS['DB']->exec("DELETE FROM clients WHERE stylist_id = {$this->getId()};");
       }
 
     }

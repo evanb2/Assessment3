@@ -7,7 +7,7 @@
       private $id;
       private $stylist_id;
 
-      function __construct($name, $phone, $email, $id = null, $stylist_id)
+      function __construct($name, $phone, $email, $id = 1, $stylist_id)
       {
         $this->name = $name;
         $this->phone = $phone;
@@ -37,7 +37,7 @@
         $this->id = (int) $new_id;
       }
 
-      function setStylist_id($new_stylist_id)
+      function setStylistId($new_stylist_id)
       {
         $this->stylist_id = (int) $new_stylist_id;
       }
@@ -63,7 +63,7 @@
         return $this->id;
       }
 
-      function getStylist_id()
+      function getStylistId()
       {
         return $this->stylist_id;
       }
@@ -71,8 +71,8 @@
       //save
       function save()
       {
-        $statement = $GLOBALS['DB']->query("INSERT INTO client (name, phone, email, stylist_id)
-          VALUES ('{$this->getName()}', '{$this->getPhone()}', '{$this->getEmail()}', {$this->getStylist_id()}) RETURNING id;");
+        $statement = $GLOBALS['DB']->query("INSERT INTO clients (name, phone, email, stylist_id)
+          VALUES ('{$this->getName()}', '{$this->getPhone()}', '{$this->getEmail()}', {$this->getStylistId()}) RETURNING id;");
         $result = $statement->fetch(PDO::FETCH_ASSOC);
         $this->setId($result['id']);
       }
@@ -80,7 +80,7 @@
       //static functions
       static function getAll()
       {
-        $returned_clients = $GLOBALS['DB']->query("SELECT * FROM client;");
+        $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients;");
         $clients = array();
         foreach($returned_clients as $client) {
           $name = $client['name'];
@@ -109,7 +109,7 @@
 
       static function deleteAll()
       {
-        $GLOBALS['DB']->exec("DELETE FROM client *;");
+        $GLOBALS['DB']->exec("DELETE FROM clients *;");
       }
 
 

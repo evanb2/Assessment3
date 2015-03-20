@@ -56,7 +56,7 @@
         $test_client->save();
 
         //Act
-        $result =$test_client->getStylist_id();
+        $result =$test_client->getStylistId();
 
         //Assert
         $this->assertEquals(true, is_numeric($result));

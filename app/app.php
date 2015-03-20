@@ -49,7 +49,7 @@
       $phone = $_POST['phone'];
       $email = $_POST['email'];
       $stylist_id = $_POST['stylist_id'];
-      $client = new Client($name, $phone, $email, $id = null, $stylist_id);
+      $client = new Client($name, $phone, $email, $id = 1, $stylist_id);
       $client->save();
       $stylist = Stylist::find($stylist_id);
       return $app['twig']->render('stylistsId.html.twig', array('stylists' => $stylist, 'clients' => Client::getAll()));
