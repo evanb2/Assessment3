@@ -32,7 +32,28 @@
         return $this->id;
       }
 
+      //save function
+      function save()
+      {
+        $statement = $GLOBALS['DB']->query("INSERT INTO stylist (name) VALUES ('{$this->getName()}') RETURNING id;");
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        $this->setId($result['id']);
+      }
+
       //static functions
+      static function getAll()
+      {
+        $returned_stylists = $GLOBALS['DB']->query("SELECT * FROM stylist;");
+        $stylists = array();
+        foreach($returned_stylists as $stylist) {
+          $name = $stylist['name'];
+          $id = $stylist['id'];
+          $new_stylist = new Stylist($name, $id);
+          array_push($stylists, $new_stylist);
+        }
+        return $stylists;
+      }
+
       static function deleteAll()
       {
         $GLOBALS['DB']->exec("DELETE FROM stylist *;");
