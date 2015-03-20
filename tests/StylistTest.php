@@ -148,9 +148,9 @@
       {
         //Arrange
         $name = "Stylist Jane";
-        $id = 4;
+        $id = 1;
         $name2 = "Stylist Bob";
-        $id2 = 6;
+        $id2 = 2;
         $test_stylist = new Stylist($name, $id);
         $test_stylist->save();
         $test_stylist2 = new Stylist($name2, $id2);
