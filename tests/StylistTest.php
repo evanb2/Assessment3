@@ -146,7 +146,7 @@
 
       function test_find()
       {
-        //Assert
+        //Arrange
         $name = "Stylist Jane";
         $id = 4;
         $name2 = "Stylist Bob";
@@ -160,7 +160,7 @@
         $result = Stylist::find($test_stylist->getId());
 
         //Assert
-        $this->assertEquals($test_stylist, $result);
+        $this->assertEquals($test_stylist, $result);//failure "null does not match expected type 'object'"
       }
 
 

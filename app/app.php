@@ -28,6 +28,7 @@
       return $app['twig']->render('clients.html.twig', array('clients' => Client::getAll()));
     });
 
+    //"call to getClients on null" error; because the find() function isn't putting anything into $stylist variable
     $app->get("/stylists/{id}", function($id) use ($app) {
       $stylist = Stylist::find($id);
       return $app['twig']->render('stylistsId.html.twig', array('stylists' => $stylist, 'clients' => $stylist->getClients()));

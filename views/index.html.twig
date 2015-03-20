@@ -16,7 +16,7 @@
     </form>
 
     {% if stylists is not empty %}
-      <p>Here are all of this stylists' clients:</p>
+      <p>Hair Salon Stylists:</p>
       <ul>
         {% for stylist in stylists %}
           <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.getName }}</a></li>
