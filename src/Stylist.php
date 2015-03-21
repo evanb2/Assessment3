@@ -80,12 +80,12 @@
 
       static function find($search_id)
       {
-        $found_stylist = null;
+        $found_stylist = null;//failure null does not match expected "object"??
         $stylists = Stylist::getAll();
         foreach($stylists as $stylist) {
           $stylist_id = $stylist->getId();
           if ($stylist_id == $search_id) {
-            $found_styist = $stylist;
+            $found_stylist = $stylist;
           }
         }
         return $found_stylist;
