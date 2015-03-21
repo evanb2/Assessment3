@@ -1,6 +1,7 @@
 Hair Salon Program
 
-Allows to add Stylists and list of clients for that Stylist into the database.
+Allows user to add Stylists and list of clients for that Stylist into the database.
+Allows for Editing Stylist's name, deleting Stylists.
 
 To CREATE DATABASE:
 In psql type:
